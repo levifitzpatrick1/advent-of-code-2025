@@ -25,7 +25,6 @@ func main() {
 
 	for _, row := range rows {
 		items := strings.Split(row, "   ")
-		fmt.Println(items)
 		if items[0] == "" || items[1] == "" {
 			continue
 		}
@@ -44,9 +43,28 @@ func main() {
 	}
 	sort.Ints(left_list)
 	sort.Ints(right_list)
+	part_1(left_list, right_list)
+	part_2(left_list, right_list)
+
+}
+
+func part_1(left_list []int, right_list []int) {
+
 	count := 0
 	for i, _ := range left_list {
 		count += int(math.Abs(float64(left_list[i] - right_list[i])))
 	}
 	fmt.Println(count)
+}
+
+func part_2(left_list []int, right_list []int) {
+	total := 0
+	for _, v := range left_list {
+		for _, j := range right_list {
+			if v == j {
+				total += v
+			}
+		}
+	}
+	fmt.Println(total)
 }
