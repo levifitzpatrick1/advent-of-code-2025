@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	fileName := "testinput.txt"
+	fileName := "input.txt"
 	totalBytes, err := os.ReadFile(fileName)
 	if err != nil {
 		log.Fatal("Failed to read file "+fileName, err)
@@ -43,13 +43,14 @@ func main() {
 	for _, row := range reattempts {
 		row = strings.TrimSpace(row)
 		nums := strings.Split(row, " ")
-		if len(nums) < 2 {
+		if len(nums) < 3 {
 			continue
 		}
 
 		passed := false
 		for i := 0; i < len(nums); i++ {
-			newNums := remove(nums, i)
+			newNums := append([]string{}, nums...)
+			newNums = remove(newNums, i)
 			if len(newNums) < 2 {
 				continue
 			}
